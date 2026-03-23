@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:15
+    container_name: cloro_ph_db
+    environment:
+      POSTGRES_DB: cloro_ph
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: cloro_ph_api
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:

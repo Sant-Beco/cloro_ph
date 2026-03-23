@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "cloro-ph"
+version = "0.1.0"
+description = "API para registro de cloro y pH en granjas e incubacion"
+authors = ["Usuario <usuario@example.com>"]
+readme = "README.md"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.116.1"
+uvicorn = { extras = ["standard"], version = "^0.35.0" }
+sqlalchemy = "^2.0.43"
+psycopg = { extras = ["binary"], version = "^3.2.9" }
+alembic = "^1.16.5"
+pydantic-settings = "^2.10.1"
+python-dotenv = "^1.1.1"
+loguru = "^0.7.3"
+sentry-sdk = { extras = ["fastapi"], version = "^2.35.1" }
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.2"
+pytest-cov = "^6.2.1"
+httpx = "^0.28.1"
+ruff = "^0.13.0"
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=src --cov-report=term-missing"
+testpaths = ["tests"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
